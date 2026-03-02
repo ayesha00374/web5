@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Array Operations (User Input)</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding-top: 50px;
+
+            background: linear-gradient(135deg, #667eea, #764ba2);
+        }
+
+        .container {
+            background: white;
+            width: 500px;
+            margin: auto;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+            transition: transform 0.3s ease;
+        }
+
+        .container:hover {
+            transform: scale(1.02);
+        }
+
+        h2 {
+            color: #444;
+        }
+
+        input {
+            width: 60px;
+            padding: 7px;
+            margin: 6px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        input:focus {
+            border-color: #667eea;
+            outline: none;
+        }
+
+        button {
+            padding: 10px 18px;
+            margin-top: 15px;
+            cursor: pointer;
+            border: none;
+            background-color: #667eea;
+            color: white;
+            border-radius: 6px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background-color: #5a67d8;
+            transform: scale(1.05);
+        }
+
+        p {
+            font-size: 18px;
+            margin: 10px 0;
+            color: #333;
+        }
+
+        .error {
+            color: red;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+    <h2>Array Operations (Enter 6 Numbers)</h2>
+
+    <input type="number" id="n1">
+    <input type="number" id="n2">
+    <input type="number" id="n3">
+    <input type="number" id="n4">
+    <input type="number" id="n5">
+    <input type="number" id="n6">
+    <br>
+
+    <button onclick="performOperations()">Calculate</button>
+
+    <p id="error" class="error"></p>
+    <p id="array"></p>
+    <p id="sum"></p>
+    <p id="largest"></p>
+    <p id="reverse"></p>
+</div>
+
+<script>
+    function performOperations() {
+
+        let inputs = [
+            document.getElementById("n1").value,
+            document.getElementById("n2").value,
+            document.getElementById("n3").value,
+            document.getElementById("n4").value,
+            document.getElementById("n5").value,
+            document.getElementById("n6").value
+        ];
+
+        let errorDiv = document.getElementById("error");
+        errorDiv.innerHTML = "";
+
+        for (let i = 0; i < inputs.length; i++) {
+            if (inputs[i] === "") {
+                errorDiv.innerHTML = "Please enter all 6 numbers!";
+                return;
+            }
+        }
+
+        let numbers = inputs.map(Number);
+
+        document.getElementById("array").innerHTML =
+            "Original Array: " + numbers.join(", ");
+
+        let sum = 0;
+        for (let i = 0; i < numbers.length; i++) {
+            sum += numbers[i];
+        }
+
+        document.getElementById("sum").innerHTML =
+            "Sum of all numbers: " + sum;
+
+        let largest = numbers[0];
+        for (let i = 1; i < numbers.length; i++) {
+            if (numbers[i] > largest) {
+                largest = numbers[i];
+            }
+        }
+
+        document.getElementById("largest").innerHTML =
+            "Largest Number: " + largest;
+
+        let reversedArray = [...numbers].reverse();
+
+        document.getElementById("reverse").innerHTML =
+            "Reversed Array: " + reversedArray.join(", ");
+    }
+</script>
+
+</body>
+</html>

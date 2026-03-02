@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Number Checker</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        input {
+            padding: 8px;
+            width: 200px;
+        }
+
+        button {
+            padding: 8px 12px;
+            margin-top: 10px;
+            cursor: pointer;
+        }
+
+        #result {
+            font-size: 20px;
+            margin-top: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h2>Number Checker</h2>
+
+    <input type="number" id="number" placeholder="Enter a number">
+    <br>
+    <button onclick="checkNumber()">Check</button>
+
+    <div id="result"></div>
+
+    <script>
+        function checkNumber() {
+
+            let numInput = document.getElementById("number").value;
+
+            // Check if empty
+            if (numInput === "") {
+                alert("Please enter a number!");
+                return;
+            }
+
+            let num = parseFloat(numInput);
+            let resultDiv = document.getElementById("result");
+
+            let message = "";
+
+            // Even or Odd
+            if (num % 2 === 0) {
+                message = "The number is Even. ";
+            } else {
+                message = "The number is Odd. ";
+            }
+
+            // Positive or Negative
+            if (num > 0) {
+                message += "It is Positive.";
+                resultDiv.style.color = "green";
+            } 
+            else if (num < 0) {
+                message += "It is Negative.";
+                resultDiv.style.color = "red";
+            } 
+            else {
+                message += "It is Zero.";
+                resultDiv.style.color = "black";
+            }
+
+            resultDiv.innerHTML = message;
+        }
+    </script>
+
+</body>
+</html>
